@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="../styles/dashboard.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="container">
+          <a href="#" class="logo">Trendygossip</a>
+          <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="register.html">Register</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main class="main-container">
+      <aside class="sidebar-left">
+        <div class="dashboard-container">
+          <h2>Welcome, <span id="user-name">[User]</span>!</h2>
+          <div class="user-card">
+            <img id="user-image" src="" alt="User Image" class="user-image" />
+            <div class="user-info">
+              <p class="user-name" id="user-name-display">[User Name]</p>
+              <p class="user-email" id="user-email">[User Email]</p>
+            </div>
+          </div>
+          <button class="logout-btn" id="logout-btn">Logout</button>
+        </div>
+      </aside>
+      <section class="sidebar-right">
+        <div class="new-post">
+          <h5>Create a New Post</h5>
+          <textarea
+            id="post-description"
+            placeholder="Post Description"
+          ></textarea>
+          <input type="text" id="post-image" placeholder="Post Image URL" />
+          <button id="post-submit">Submit</button>
+        </div>
+        <h2>Your Posts</h2>
+        <div id="user-posts" class="user-posts"></div>
+      </section>
+    </main>
+
+    <div id="edit-popup">
+      <h4>Edit Post</h4>
+      <input type="hidden" id="edit-post-id" />
+      <textarea id="edit-description" placeholder="Post Description"></textarea>
+      <input type="text" id="edit-image" placeholder="Post Image URL" />
+      <div>
+        <button id="edit-form-submit">Update Post</button>
+        <button id="close-edit-popup-btn">Close</button>
+      </div>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+  </body>
+</html>
