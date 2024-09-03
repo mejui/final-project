@@ -253,14 +253,26 @@ app.delete("/comments/:id", (req, res) => {
 });
 
 app.delete("/posts/:id", (req, res) => {
-  const query = "DELETE FROM posts WHERE id = ?";
-  db.query(query, [req.params.id], (err, result) => {
+  const postId = req.params.id;
+
+  // Delete all comments associated with the post
+  const deleteCommentsQuery = "DELETE FROM comments WHERE post_id = ?";
+  db.query(deleteCommentsQuery, [postId], (err, result) => {
     if (err) {
-      console.error(err);
-      res.status(500).send("An error occurred while deleting post.");
-    } else {
-      res.status(204).send();
+      console.error("Error deleting comments:", err);
+      return res.status(500).send("An error occurred while deleting comments.");
     }
+
+    // Delete the post after comments have been deleted
+    const deletePostQuery = "DELETE FROM posts WHERE id = ?";
+    db.query(deletePostQuery, [postId], (err, result) => {
+      if (err) {
+        console.error("Error deleting post:", err);
+        return res.status(500).send("An error occurred while deleting post.");
+      }
+
+      res.status(204).send();
+    });
   });
 });
 
